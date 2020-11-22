@@ -34,6 +34,11 @@ class Image(models.Model):
     
     def delete_image(self):
         self.delete()
+    
+    @classmethod
+    def images(cls):
+        images = cls.objects.all()
+        return images
 
 class Comment(models.Model):
     comment_owner = models.ForeignKey('Profile',on_delete=models.CASCADE)
