@@ -5,6 +5,28 @@
 <div class="container">
     <div class="row">
 
+        <div class="card mb-4">
+            {% for image in images %}
+            <div class="card-title">
+                <img src="{{image.user.profile_photo.url}}" class="rounded-circle border ml-3 mt-2  mr-3" width="35"
+                    height="35">
+
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+        <div class="container">
+            <div class="row">
+                {% for user in users %}
+                <div class="col-md-2 mr-3 mt-1 mb-2">
+                    <img class="rounded-circle" src="{{ user.profile.profile_picture.url }}" width="45px" height="45px">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
             Upload An Image
         </button>
@@ -25,11 +47,12 @@
                             {% csrf_token %}
 
                             {% bootstrap_form form%}
+                            <button type="submit" class="btn btn-primary">Post</button>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
+
                     </div>
                 </div>
             </div>
