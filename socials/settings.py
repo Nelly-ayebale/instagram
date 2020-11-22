@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -130,3 +134,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+LOGIN_REDIRECT_URL = '/'
+
+cloudinary.config( 
+  cloud_name = "ayebale", 
+  api_key = "666635274179139", 
+  api_secret = "VgBLMVnsJ8dS2eNDVSp9ap6yTgY" 
+)
