@@ -14,7 +14,7 @@ class Profile(models.Model):
     bio = HTMLField()
 
     def __str__(self):
-        return self.user.username}
+        return self.user.username
 
     def save_profile(self):
         self.user
