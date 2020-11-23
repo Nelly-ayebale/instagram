@@ -10,15 +10,22 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     users = User.objects.exclude(id=request.user.id)
     images = Image.images()
-
+    
     if request.method == 'POST':
+       
         form = ImageForm(request.POST,request.FILES)
-        if form.is_valid():
+       
+        
+        
+        if form.is_valid() :
             image = form.save(commit=False)
-            image.user = request.user.profile 
+            image.profile = request.user.profile
             image.save()
+        
+            
             return redirect('home')
     else:
+        
         form = ImageForm()
     return render(request,'instagrams/home.html',{"users":users,"images":images,"form":form})
 
