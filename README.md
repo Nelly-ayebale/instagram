@@ -52,6 +52,9 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 ## Resources
 This website was helpful in extending the Django User Model using a One-to-One link [here](https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html)
 
+## Admin Information
+- Username : Ayebale
+- Password : 1234
 
 [MIT](LICENSE) ©
 
