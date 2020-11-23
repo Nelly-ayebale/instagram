@@ -3,8 +3,8 @@
 <div class="container">
 
     <div class="row">
-        {% if searched_profiles%}
-        <h2>Found {{ searched_profiles|length }} of searched term {{message}}</h2>
+        {% if profiles%}
+        <h2>Found {{ profiles|length }} of searched term {{message}}</h2>
         {% else %}
         <h2> Found 0 profiles for the search term {{message}}</h2>
         {% endif %}
@@ -13,13 +13,14 @@
 
     <div class="row">
 
-        {% if searched_profiles %}
-        {% for searched_profile in searched_profiles %}
-        <div class="col-md-4">
-            <img src="{{searched_profile.user.profile.profile_photo.url}}" alt="" style="width: 300px;">
+        {% if profiles %}
+        {% for profile in profiles %}
+        <div class="col-md-12">
+            <img src="{{profile.user.profile.profile_photo.url}}" alt="" style="width: 300px;">
+
         </div>
-        <div class="col-md-7">
-            <a href="{% url 'user' searched_profile.user.username %}">{{searched_profile.user.username}}</a>
+        <div class="col-md-12">
+            <a href="{% url 'user' profile.user.username %}">{{profile.user.username}}</a>
         </div>
         {% endfor %}
         {% endif %}

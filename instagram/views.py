@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from .models import Profile,Image,Comment
 from django.contrib.auth.models import User
@@ -41,19 +41,22 @@ def profile(request,username):
 
 @login_required(login_url='accounts/login/')
 def user(request,username):
-    user_form = get.object(User, username=username)
-    images = user_form.profile.images.all()
+    user_form = get_object_or_404(User, username=username)
+    
     if request.user == user_form:
         return redirect('profile', username=request.user.username)
     
-    return render(request,'instagrams/user.html',{"user_form":user_form,"images":images})
+    return render(request,'instagrams/user.html',{"user_form":user_form})
     
 @login_required(login_url='accounts/login/')
-def search(request):
-    if 'search_profile' in request.GET and request.GET['search_profile']:
-        name = request.GET.get("search_profile")
-        searched_profiles = Profile.search(name)
-        message = f'{name}'
+def search_by_profile(request):
+    if 'profile' in request.GET and request.GET["profile"]:
+        search_term = request.GET.get("profile")
+        searched_profiles = Profile.search_by_profile(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'instagrams/search.html',{"message":message,"profiles": searched_profiles})
+
     else:
-        message = "You haven't searched for any profile"
-    return render(request,'instagrams/search.html',{"searched_profiles":searched_profiles,"message":message})
+        message = "You haven't searched for any term"
+        return render(request, 'instagrams/search.html',{"message":message})

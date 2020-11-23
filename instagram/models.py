@@ -31,6 +31,11 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
     
+    @classmethod
+    def search_by_profile(cls,search_term):
+        profiles = cls.objects.filter(user__username__icontains=search_term)
+        return profiles
+    
 class Image(models.Model):
     image = CloudinaryField('image',null=True,blank=True)
     image_name = models.CharField(max_length=100,blank=True,null=True)

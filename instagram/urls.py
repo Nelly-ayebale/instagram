@@ -7,7 +7,7 @@ urlpatterns=[
     path('home/',views.home,name='home'),
     path('profile/<username>/',views.profile,name='profile'),
     path('user/<username>/',views.user,name='user'),
-    path('search/', views.search, name='search'),
+    path('search/', views.search_by_profile, name='search'),
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
