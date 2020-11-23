@@ -1,4 +1,4 @@
-# [Instagram]
+# [Instagram](https://nellys-instagram.herokuapp.com/)
 # Instagram
 <table>
 <tr>
@@ -8,7 +8,7 @@
 </tr>
 </table>
 
-## [Usage]
+## [Usage](https://nellys-instagram.herokuapp.com/)
 
 ### Development
 Want to contribute? Great!
