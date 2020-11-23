@@ -8,7 +8,7 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
     name = models.CharField(max_length=60,null=True,blank=True)
     profile_photo = CloudinaryField('image')
     bio = HTMLField()
@@ -40,7 +40,7 @@ class Image(models.Model):
     image = CloudinaryField('image',null=True,blank=True)
     image_name = models.CharField(max_length=100,blank=True,null=True)
     caption = models.CharField(max_length=300,null=True,blank=True)
-    profile = models.ForeignKey('Profile',on_delete=models.CASCADE)
+    profile = models.ForeignKey('Profile',on_delete=models.CASCADE,related_name='images')
     likes = models.ManyToManyField(User,blank=True)
 
     def __str__(self):

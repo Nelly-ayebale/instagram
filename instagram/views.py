@@ -31,6 +31,7 @@ def home(request):
 
 @login_required(login_url='accounts/login/')
 def profile(request,username):
+    images = request.user.profile.images.all()
     
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
@@ -44,14 +45,18 @@ def profile(request,username):
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'instagrams/profile.html', {'user_form': user_form,'profile_form': profile_form})
+    return render(request, 'instagrams/profile.html', {'user_form': user_form,'profile_form': profile_form,"images":images})
 
 @login_required(login_url='accounts/login/')
 def user(request,username):
     user_form = get_object_or_404(User, username=username)
     
+
     if request.user == user_form:
         return redirect('profile', username=request.user.username)
+   
+    
+    
     
     return render(request,'instagrams/user.html',{"user_form":user_form})
     
