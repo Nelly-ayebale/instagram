@@ -56,4 +56,4 @@ def search(request):
         message = f'{name}'
     else:
         message = "You haven't searched for any profile"
-    return render(request,'search.html',{"searched_profiles":searched_profiles,"message":message})
+    return render(request,'instagrams/search.html',{"searched_profiles":searched_profiles,"message":message})
