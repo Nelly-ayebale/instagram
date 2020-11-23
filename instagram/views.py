@@ -54,11 +54,11 @@ def user(request,username):
 
     if request.user == user_form:
         return redirect('profile', username=request.user.username)
-   
+    images = user_form.profile.images.all()
     
     
     
-    return render(request,'instagrams/user.html',{"user_form":user_form})
+    return render(request,'instagrams/user.html',{"user_form":user_form,"images":images})
     
 @login_required(login_url='accounts/login/')
 def search_by_profile(request):
