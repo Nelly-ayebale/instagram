@@ -44,7 +44,16 @@ def user(request,username):
     user_form = get.object(User, username=username)
     images = user_form.profile.images.all()
     if request.user == user_form:
-        return('profile', username=request.user.username)
+        return redirect('profile', username=request.user.username)
     
     return render(request,'instagrams/user.html',{"user_form":user_form,"images":images})
     
+@login_required(login_url='accounts/login/')
+def search(request):
+    if 'search_profile' in request.GET and request.GET['search_profile']:
+        name = request.GET.get("search_profile")
+        searched_profiles = Profile.search(name)
+        message = f'{name}'
+    else:
+        message = "You haven't searched for any profile"
+    return render(request,'search.html',{"searched_profiles":searched_profiles,"message":message})

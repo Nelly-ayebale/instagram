@@ -32,7 +32,7 @@ class Profile(models.Model):
         instance.profile.save()
     
 class Image(models.Model):
-    image = CloudinaryField('image')
+    image = CloudinaryField('image',null=True,blank=True)
     image_name = models.CharField(max_length=100,blank=True,null=True)
     caption = models.CharField(max_length=300,null=True,blank=True)
     profile = models.ForeignKey('Profile',on_delete=models.CASCADE)
